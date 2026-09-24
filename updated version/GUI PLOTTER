@@ -1,0 +1,128 @@
+import math
+import tkinter as tk
+from tkinter import ttk
+import importlib
+
+def run_simulation(num, den, version, steps=15):
+    n_hist, d_hist, val_hist = [num], [den], [num / den]
+    for _ in range(steps):
+        cuts_num, cuts_den = num - 1, den - 1
+        total_cuts = cuts_num if version == 0 else (cuts_den if version == 1 else cuts_num + cuts_den)
+        is_even = (total_cuts % 2 == 0)
+        
+        if version in [0, 1, 2]:
+            if is_even: den *= 2
+            else: num = (3 * num) + den
+        elif version == 3:
+            if is_even: den = (3 * den) + 1
+            else:
+                if num % 2 == 0: num //= 2
+                else: den *= 2
+        elif version == 4:
+            if is_even: num, den = den * 2, num
+            else: num = (3 * num) - den
+                
+        if num == 0: break
+        gcd = math.gcd(abs(num), abs(den))
+        num //= gcd; den //= gcd
+        n_hist.append(num); d_hist.append(den)
+        val_hist.append(num / den if den != 0 else 0)
+    return n_hist, d_hist, val_hist
+
+class CarrotCollatzApp(tk.Tk):
+    def __init__(self):
+        super().__init__()
+        self.title("Carrot-Collatz Framework Visualizer")
+        self.geometry("1000x650")
+        self.minsize(600, 400)
+        self.grid_rowconfigure(0, weight=1)
+        self.grid_columnconfigure(1, weight=1)
+
+        self.side_panel = ttk.Frame(self, padding=10, relief="raised")
+        self.side_panel.grid(row=0, column=0, sticky="ns")
+
+        ttk.Label(self.side_panel, text="Select Graph:", font=("Helvetica", 11, "bold")).pack(anchor="w", pady=(0, 10))
+
+        self.views = {
+            "Version 0: Baseline Control": self.plot_v0,
+            "Version 1: Denominator Trap": self.plot_v1,
+            "Version 2: Parity Sum Loop": self.plot_v2,
+            "Version 3: Bounded Decay": self.plot_v3,
+            "Version 4: Reciprocal Trajectory": self.plot_v4_line,
+            "Version 4: Phase Portrait": self.plot_v4_phase
+        }
+
+        for view_name in self.views.keys():
+            ttk.Button(self.side_panel, text=view_name, command=lambda v=view_name: self.display_graph(v)).pack(fill="x", pady=4)
+
+        try:
+            matplotlib = importlib.import_module("matplotlib.pyplot")
+            canvas_module = importlib.import_module("matplotlib.backends.backend_tkagg")
+            FigureCanvasTkAgg = canvas_module.FigureCanvasTkAgg
+        except ModuleNotFoundError:
+            ttk.Label(
+                self,
+                text="Matplotlib is required to display graphs.\n\n"
+                     "Install it with:\npython -m pip install matplotlib",
+                justify="center",
+                padding=20,
+            ).grid(row=0, column=1, sticky="nsew")
+            return
+
+        self.plot_panel = ttk.Frame(self)
+        self.plot_panel.grid(row=0, column=1, sticky="nsew")
+        self.plt = matplotlib
+        self.fig, self.ax = self.plt.subplots(figsize=(6, 4))
+        self.canvas = FigureCanvasTkAgg(self.fig, master=self.plot_panel)
+        self.canvas.get_tk_widget().pack(fill="both", expand=True)
+        self.display_graph("Version 0: Baseline Control")
+
+    def display_graph(self, view_name):
+        self.fig.clf()
+        self.ax = self.fig.add_subplot(111)
+        self.views[view_name]()
+        self.fig.tight_layout()
+        self.canvas.draw()
+
+    def plot_v0(self):
+        _, _, val = run_simulation(4, 3, 0, 10)
+        self.ax.plot(val, marker='o', color='tab:blue', linewidth=2)
+        self.ax.set_title("Version 0: Baseline Control", fontweight='bold')
+
+    def plot_v1(self):
+        n, d, _ = run_simulation(1, 13, 1, 10)
+        self.ax.plot(n, marker='o', label='N', color='tab:red')
+        self.ax.plot(d, marker='s', label='D', color='tab:gray', linestyle='--')
+        self.ax.set_yscale('log')
+        self.ax.set_title("Version 1: Denominator Trap (N -> ∞)", fontweight='bold')
+
+    def plot_v2(self):
+        n, d, _ = run_simulation(4, 5, 2, 10)
+        self.ax.plot(n, marker='o', label='N', color='tab:purple')
+        self.ax.plot(d, marker='s', label='D', color='tab:gray', linestyle='--')
+        self.ax.set_yscale('log')
+        self.ax.set_title("Version 2: Parity Sum Loop (Locks D=2)", fontweight='bold')
+
+    def plot_v3(self):
+        n, d, _ = run_simulation(4, 5, 3, 12)
+        self.ax.plot(n, marker='o', label='N', color='tab:green')
+        self.ax.plot(d, marker='s', label='D', color='tab:orange')
+        self.ax.set_title("Version 3: Denominator Squeeze", fontweight='bold')
+
+    def plot_v4_line(self):
+        _, _, val = run_simulation(2, 3, 4, 15)
+        self.ax.plot(val, marker='o', color='tab:red', linewidth=2)
+        self.ax.axhline(y=1.0, color='black', linestyle=':', label='N=D Boundary')
+        self.ax.set_yscale('log')
+        self.ax.set_title("Version 4: Reciprocal Trajectory", fontweight='bold')
+
+    def plot_v4_phase(self):
+        n, d, _ = run_simulation(2, 3, 4, 25)
+        self.ax.plot(n, d, marker='o', color='tab:olive', alpha=0.7)
+        max_v = max(max(n), max(d))
+        self.ax.plot([0, max_v], [0, max_v], color='gray', linestyle='--', label='Y=X')
+        self.ax.set_title("Version 4: Phase Space Portrait (N vs D)", fontweight='bold')
+
+if __name__ == "__main__":
+    app = CarrotCollatzApp()
+    app.mainloop()
