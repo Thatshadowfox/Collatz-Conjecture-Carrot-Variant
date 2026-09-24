@@ -4,7 +4,8 @@ An exploratory rational dynamical system inspired by the Collatz problem. The re
 
 - Lean 4 definitions and checked arithmetic lemmas for cut-count parity and the Version 3/4 transformations.
 - A Python/Tkinter/Matplotlib GUI for experimenting with numerator, denominator, profile, and step-count inputs.
-- Research notes and the LaTeX source used to develop the framework.
+- Research notes and the LaTeX source used to develop the framework. 
+
 
 ## Theory overview
 
@@ -127,3 +128,5 @@ The tools accept positive integer numerator and denominator inputs. A zero denom
 The original code and project materials are released under the [MIT License](LICENSE).
 
 Mathlib is an external dependency distributed under its own Apache 2.0 license. This repository does not replace or relicense Mathlib.
+
+Thank you for checking this out.
