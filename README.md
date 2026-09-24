@@ -6,6 +6,56 @@ An exploratory rational dynamical system inspired by the Collatz problem. The re
 - A Python/Tkinter/Matplotlib GUI for experimenting with numerator, denominator, profile, and step-count inputs.
 - Research notes and the LaTeX source used to develop the framework.
 
+## Theory overview
+
+### States and cut-count parity
+
+The simulator represents a rational value as a pair of positive integers $(N,D)$, standing for the fraction $N/D$. After each transition, the pair is reduced by its greatest common divisor.
+
+The framework assigns a cut count to an integer component $X$:
+
+$$C(X) = X - 1.$$
+
+The parity of the cut count selects the next operational branch. For joint parity, the total is:
+
+$$C_{\mathrm{total}} = (N-1) + (D-1) = N + D - 2.$$
+
+For positive $N$, an even cut count is equivalent to $N$ being odd. This is a deliberately nonstandard parity mechanism: the branch name refers to the cut count, not directly to the ordinary parity of $N$ or $D$.
+
+### System profiles
+
+The five profiles use the same state representation but different parity sources or transformations:
+
+- **Control (v0):** Uses numerator cuts. Its even branch doubles the denominator, representing $(N/D)/2$, and its odd branch sends $(N,D)$ to $(3N+D,D)$, representing $3(N/D)+1$.
+- **Version 1:** Uses denominator cuts with the same two transformations. The intended experiment is the denominator-doubling trap.
+- **Version 2:** Uses joint cuts $N+D-2$ with the same transformations. The intended experiment is a parity-sum loop.
+- **Version 3:** Uses joint cuts, changes the denominator to $3D+1$ on one branch, and halves $N$ on the other. The intended behavior is bounded decay or a decay funnel.
+- **Version 4:** Uses joint cuts. Its even branch maps $(N,D)$ to $(2D,N)$, corresponding to halving and then inverting the fraction. Its odd branch maps $(N,D)$ to $(3N-D,D)$.
+
+Version 4 is the main exploratory model. The plotter shows its value trajectory and phase portrait, while the tester prints each transition, branch parity, reduction, and resulting fraction.
+
+### Relation to the classic Collatz conjecture
+
+The classic Collatz map on positive integers is:
+
+$$T(n) = \begin{cases} n/2 & n \text{ even}, \\ 3n+1 & n \text{ odd}. \end{cases}$$
+
+The current framework is inspired by this map but is not automatically equivalent to it. For example, the current Control rule sends $(3,1)$ to $(3,2)$ because $3-1$ is an even cut count, while standard Collatz sends $3$ to $10$. Lean records this mismatch explicitly in `current_control_is_not_standard_collatz`.
+
+Therefore, experiments with Versions 1-4 are investigations of new rational dynamical systems. They do not prove the classic Collatz conjecture.
+
+### What Lean verifies
+
+Lean checks the exact statements written in `CarrotCollatzTest.lean`, including:
+
+- the cut-count parity identity;
+- the joint-cut formula;
+- the Version 3 and Version 4 transformation definitions;
+- selected Version 4 numerator-parity consequences; and
+- the fact that the current Control rule differs from standard Collatz.
+
+Claims such as convergence, escape to infinity, chaos, randomness, or a two-step oscillator require additional precise definitions and theorems. The Python tools provide computational observations, not proofs of those broader claims.
+
 ## Status
 
 The Lean files verify the statements that are explicitly formalized. They do not prove the classic Collatz conjecture, universal convergence, divergence, or mathematical chaos. The Version 4 behavior is currently an experimental dynamical-system investigation.
