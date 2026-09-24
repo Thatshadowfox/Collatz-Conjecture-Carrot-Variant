@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this project, please cite it using the metadata below."
+title: "The Carrot-Collatz Framework"
+type: software
+abstract: >-
+  An exploratory rational dynamical system inspired by the classical Collatz
+  problem, with Lean-checked arithmetic statements and interactive Python
+  visualizers.
+authors:
+  - family-names: Richards
+    given-names: Sasha
+version: "1.0.0"
+date-released: 2026-09-25
+repository-code: "https://github.com/Thatshadowfox/Collatz-Conjecture-Carrot-Variant"
+license: MIT
+keywords:
+  - Collatz conjecture
+  - dynamical systems
+  - rational numbers
+  - Lean
+  - formal mathematics
+  - mathematical visualization

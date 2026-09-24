@@ -120,6 +120,7 @@ The tools accept positive integer numerator and denominator inputs. A zero denom
 | `updated version/GUI PLOTTER` | Interactive Python visualizer |
 | `updated version/GUI tester` | Interactive multi-profile tester with logs |
 | `updated version/requirements.txt` | Python GUI dependencies |
+| `CITATION.cff` | Citation metadata for GitHub and Zenodo |
 | `# The Carrot-Collatz System 4 version.md` | Main research document |
 | `CarrotCollatz/LATEX` | LaTeX source document |
 
@@ -128,5 +129,9 @@ The tools accept positive integer numerator and denominator inputs. A zero denom
 The original code and project materials are released under the [MIT License](LICENSE).
 
 Mathlib is an external dependency distributed under its own Apache 2.0 license. This repository does not replace or relicense Mathlib.
+
+## Citation
+
+Citation metadata is provided in [CITATION.cff](CITATION.cff). GitHub can use this file to display a **Cite this repository** option, and Zenodo can use it when creating an archived release.
 
 Thank you for checking this out.
