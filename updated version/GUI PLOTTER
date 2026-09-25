@@ -45,10 +45,10 @@ class CarrotCollatzApp(tk.Tk):
 
         self.views = {
             "Version 0: Baseline Control": self.plot_v0,
-            "Version 1: Denominator Trap": self.plot_v1,
-            "Version 2: Parity Sum Loop": self.plot_v2,
-            "Version 3: Bounded Decay": self.plot_v3,
-            "Version 4: Reciprocal Trajectory": self.plot_v4_line,
+            "Version 1: Absorbing Divergence Trap": self.plot_v1,
+            "Version 2: Joint-Cut Absorbing Loop": self.plot_v2,
+            "Version 3: Bounded Decay Funnel": self.plot_v3,
+            "Version 4: Dual-Phase Reciprocal Oscillator": self.plot_v4_line,
             "Version 4: Phase Portrait": self.plot_v4_phase
         }
 
@@ -94,27 +94,27 @@ class CarrotCollatzApp(tk.Tk):
         self.ax.plot(n, marker='o', label='N', color='tab:red')
         self.ax.plot(d, marker='s', label='D', color='tab:gray', linestyle='--')
         self.ax.set_yscale('log')
-        self.ax.set_title("Version 1: Denominator Trap (N -> ∞)", fontweight='bold')
+        self.ax.set_title("Version 1: Absorbing Divergence Trap (N -> ∞)", fontweight='bold')
 
     def plot_v2(self):
         n, d, _ = run_simulation(4, 5, 2, 10)
         self.ax.plot(n, marker='o', label='N', color='tab:purple')
         self.ax.plot(d, marker='s', label='D', color='tab:gray', linestyle='--')
         self.ax.set_yscale('log')
-        self.ax.set_title("Version 2: Parity Sum Loop (Locks D=2)", fontweight='bold')
+        self.ax.set_title("Version 2: Joint-Cut Absorbing Loop (Locks D=2)", fontweight='bold')
 
     def plot_v3(self):
         n, d, _ = run_simulation(4, 5, 3, 12)
         self.ax.plot(n, marker='o', label='N', color='tab:green')
         self.ax.plot(d, marker='s', label='D', color='tab:orange')
-        self.ax.set_title("Version 3: Denominator Squeeze", fontweight='bold')
+        self.ax.set_title("Version 3: Bounded Decay Funnel", fontweight='bold')
 
     def plot_v4_line(self):
         _, _, val = run_simulation(2, 3, 4, 15)
         self.ax.plot(val, marker='o', color='tab:red', linewidth=2)
         self.ax.axhline(y=1.0, color='black', linestyle=':', label='N=D Boundary')
         self.ax.set_yscale('log')
-        self.ax.set_title("Version 4: Reciprocal Trajectory", fontweight='bold')
+        self.ax.set_title("Version 4: Dual-Phase Reciprocal Oscillator", fontweight='bold')
 
     def plot_v4_phase(self):
         n, d, _ = run_simulation(2, 3, 4, 25)

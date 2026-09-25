@@ -6,10 +6,10 @@
 ---
 
 ## 1. FOUNDATIONAL AXIOM & CORE VISION
-The **Carrot-Collatz System** extends the classic Collatz dynamical system to rational fractions ($N/D$). It bridges physical geometry (making non-intersecting parallel cuts across a 1D line segment) with abstract number theory (parity properties of an integer).
+The **Carrot-Collatz System** extends the classic Collatz dynamical system to rational fractions ($N/D$) by redefining parity in terms of the physical geometry of a 1D cut configuration. It links a spatial cut-count rule with the arithmetic structure of the numerator and denominator.
 
 ### The "Cuts Plus One" Rule
-In standard mathematics, fraction parity is evaluated strictly via numerators or divisibility. In this framework, parity is defined by the **number of physical parallel cuts** required to generate its components.
+In standard mathematics, fraction parity is evaluated through divisibility or numerator structure. In this framework, parity is defined by the **number of physical parallel cuts** needed to generate the component.
 
 $$\text{Formula: } C = X - 1$$
 
@@ -51,10 +51,10 @@ Uses joint cuts $C_{\text{Total}} = N + D - 2$. The sequence degrades to an abso
 ### Part 3: Version 3 (The Denominator Squeeze)
 Re-engineers transformations to stabilize trajectory entropy. Even steps execute $D_{\text{new}} = 3D + 1$, while Odd steps execute $N_{\text{new}} = N / 2$. This creates a converging "funnel" that compresses values into a bounded decay loop.
 
-### Part 4: Version 4 (The Chaotic Cross-Over Shift)
-Utilizes an absolute geometric reciprocal inversion on even steps:
+### Part 4: Version 4 (The Dual-Phase Reciprocal Oscillator)
+Utilizes a geometric reciprocal inversion on even steps:
 $$\frac{N}{D} \longrightarrow \frac{N}{2D} \longrightarrow \frac{2D}{N}$$
-Paired with the subtraction-anchored odd rule $\frac{3N - D}{D}$, it forces elements to continuously cross over the fractional boundary line ($N = D$), preventing fixed traps and sustaining non-periodic state transitions.
+Paired with the subtraction-anchored odd rule $\frac{3N - D}{D}$, it forces elements to cross the fractional boundary line ($N = D$) in a controlled alternating pattern. This suppresses the absorbing traps found in Versions 1 and 2 and produces the project's observed anti-persistent period-2 parity clock $(0 \rightarrow 1 \rightarrow 0 \rightarrow 1)$ rather than a runaway divergence state.
 
 ---
 

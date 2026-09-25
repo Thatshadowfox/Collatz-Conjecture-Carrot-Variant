@@ -133,10 +133,10 @@ class InteractiveCarrotCollatzApp(tk.Tk):
 
         self.views = [
             "Version 0: Baseline Control",
-            "Version 1: Denominator Trap",
-            "Version 2: Parity Sum Loop",
-            "Version 3: Bounded Decay",
-            "Version 4: Reciprocal Trajectory",
+            "Version 1: Absorbing Divergence Trap",
+            "Version 2: Joint-Cut Absorbing Loop",
+            "Version 3: Bounded Decay Funnel",
+            "Version 4: Dual-Phase Reciprocal Oscillator",
             "Version 4: Phase Space Portrait"
         ]
 
@@ -209,35 +209,35 @@ class InteractiveCarrotCollatzApp(tk.Tk):
             self.ax.set_title("Version 0: Baseline Control (Clears to Whole Integers)", fontweight='bold')
             self.ax.set_ylabel("Fraction Value (N/D)")
 
-        elif selected == "Version 1: Denominator Trap":
+        elif selected == "Version 1: Absorbing Divergence Trap":
             n, d, _ = self.sim_data[1]
             self.ax.plot(n, marker='o', label='Numerator (N)', color='tab:red')
             self.ax.plot(d, marker='s', label='Denominator (D)', color='tab:gray', linestyle='--')
             self.ax.set_yscale('log')
-            self.ax.set_title("Version 1: Denominator Doubles Trap (Escapes N -> ∞)", fontweight='bold')
+            self.ax.set_title("Version 1: Absorbing Divergence Trap (Escapes N -> ∞)", fontweight='bold')
             self.ax.set_ylabel("Value (Log Scale)")
 
-        elif selected == "Version 2: Parity Sum Loop":
+        elif selected == "Version 2: Joint-Cut Absorbing Loop":
             n, d, _ = self.sim_data[2]
             self.ax.plot(n, marker='o', label='Numerator (N)', color='tab:purple')
             self.ax.plot(d, marker='s', label='Denominator (D)', color='tab:gray', linestyle='--')
             self.ax.set_yscale('log')
-            self.ax.set_title("Version 2: Parity Sum Loop (Locks D=2, Escapes N -> ∞)", fontweight='bold')
+            self.ax.set_title("Version 2: Joint-Cut Absorbing Loop (Locks D=2, Escapes N -> ∞)", fontweight='bold')
             self.ax.set_ylabel("Value (Log Scale)")
 
-        elif selected == "Version 3: Bounded Decay":
+        elif selected == "Version 3: Bounded Decay Funnel":
             n, d, _ = self.sim_data[3]
             self.ax.plot(n, marker='o', label='Numerator (N)', color='tab:green')
             self.ax.plot(d, marker='s', label='Denominator (D)', color='tab:orange')
-            self.ax.set_title("Version 3: Denominator Squeeze (Bounded Decay Funnel)", fontweight='bold')
+            self.ax.set_title("Version 3: Bounded Decay Funnel", fontweight='bold')
             self.ax.set_ylabel("Component Values")
 
-        elif selected == "Version 4: Reciprocal Trajectory":
+        elif selected == "Version 4: Dual-Phase Reciprocal Oscillator":
             _, _, val = self.sim_data[4]
             self.ax.plot(val, marker='o', color='tab:red', linewidth=2, label="Fraction N/D")
             self.ax.axhline(y=1.0, color='black', linestyle=':', label='Boundary Line (N=D)')
             self.ax.set_yscale('log')
-            self.ax.set_title("Version 4: Reciprocal Inversion Trajectory (Log Scale)", fontweight='bold')
+            self.ax.set_title("Version 4: Dual-Phase Reciprocal Oscillator (Log Scale)", fontweight='bold')
             self.ax.set_ylabel("Fraction Value (Log Scale)")
 
         elif selected == "Version 4: Phase Space Portrait":

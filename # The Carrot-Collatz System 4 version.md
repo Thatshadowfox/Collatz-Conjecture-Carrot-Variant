@@ -6,7 +6,7 @@
 
 ## Abstract
 
-The Carrot-Collatz System extends the classic Collatz dynamical system to rational fractions. It defines fraction parity through the number of physical cuts needed to produce each component, using $C = X - 1$. The framework studies five configurations: a control baseline and Versions 1-4. Their reported behaviors range from denominator divergence traps and bounded decay loops to reciprocal crossover dynamics. Computational tests of Version 4 indicate a deterministic two-phase oscillator rather than an unconstrained pseudorandom generator.
+The Carrot-Collatz Framework studies a family of rational dynamical systems in which parity is defined geometrically from a 1D spatial cut-count rule, $C = X - 1$, and the joint state is evaluated by $C_{\mathrm{total}} = N + D - 2$. This construction extends Collatz-type transformations from integers to fractions and reveals that small changes in the update rule can produce qualitatively distinct behaviors: absorbing divergence traps in the simpler profiles, a bounded decay funnel in Version 3, and a reciprocal dual-phase oscillator in Version 4. The observed Version 4 dynamics are consistent with an anti-persistent period-2 parity clock across the unit boundary, rather than with unconstrained pseudorandom behavior.
 
 ## 1. Core Vision and Foundational Axiom
 
@@ -72,17 +72,17 @@ $$N_{\text{new}} = N / 2$$
 
 on odd steps. The intended behavior is a bounded decay funnel. A formal proof would require an invariant or ranking function showing boundedness and eventual recurrence.
 
-### Part 4: Version 4, the Reciprocal Crossover Shift
+### Part 4: Version 4, the Dual-Phase Reciprocal Oscillator
 
 The even transformation is
 
-$$\frac{N}{D} \longrightarrow \frac{N}{2D} \longrightarrow \frac{2D}{N}.$$
+$$\frac{N}{D} \longrightarrow \frac{N}{2D} \longrightarrow \frac{2D}{N}.$$ 
 
 The odd transformation is
 
-$$\frac{3N-D}{D}.$$
+$$\frac{3N-D}{D}.$$ 
 
-The framework proposes that these transformations move states across the fractional boundary $N=D$. Whether the resulting dynamics are chaotic, periodic, or merely complicated is a mathematical property to establish from the exact transition system, not from appearance alone.
+This design treats the system as a coupled state machine: reciprocal inversion on even steps acts as a geometric governor, while the odd branch drives the state away from the unit boundary. In the framework's intended dynamics, this suppresses the absorbing runaway states seen in Versions 1 and 2 and creates a phase-locked dual-phase oscillation across the threshold $N=D$. The observed behavior is best described as a deterministic anti-persistent period-2 parity clock $(0 \rightarrow 1 \rightarrow 0 \rightarrow 1)$ rather than as generic chaos or independent pseudorandomness.
 
 ## 4. Empirical Randomness and Trajectory State Analysis
 
@@ -129,9 +129,9 @@ Thus, the computational evidence supports describing Version 4 as an anti-persis
 
 ## 5. Conclusion
 
-The Carrot-Collatz framework defines a family of rational dynamical systems whose operational states are driven by cut-count parity. Versions 0-4 provide different transformation profiles for studying divergence, bounded behavior, and reciprocal crossover.
+The Carrot-Collatz framework defines a family of rational dynamical systems whose operational states are governed by a geometric cut-parity rule. Across Versions 0-4, the update law changes in ways that separate divergence, bounded decay, and reciprocal crossover dynamics into distinct behavioral regimes.
 
-The Version 4 experiments report an apparent two-step parity period: an expansionary phase followed by reciprocal contraction. This is more consistent with a deterministic anti-persistent oscillator than with an unconstrained pseudorandom stream. Further work should formalize the state space, specify positivity and reduction assumptions, and prove or disprove the proposed invariants.
+In particular, the Version 4 experiments suggest a two-step parity period: an expansionary phase followed by reciprocal contraction. This behavior is more consistent with a deterministic anti-persistent dual-phase oscillator than with a pseudorandom stream. In the project’s terminology, Version 4 behaves as a reciprocal dual-phase oscillator whose parity alternates across the unit boundary and whose state transitions are regulated by an inversion operator rather than by a runaway denominator trap. Formalization of the state space, positivity assumptions, and reduction rules remains a necessary step before the proposed invariants can be established as theorems.
 
 ## Appendix: Universal Python Simulator
 

@@ -81,15 +81,18 @@ class CarrotCollatzLauncher(tk.Tk):
             (
                 "What is this?\n",
                 "The Carrot-Collatz framework is an exploratory family of dynamical "
-                "systems on rational states N/D. It uses a cut count C = X - 1 "
-                "to choose an operational branch.\n\n",
+                "systems on rational states N/D. It uses a physical cut-count rule "
+                "C = X - 1 to decide which branch to follow, and studies how small "
+                "rule shifts create absorbing divergence traps, bounded decay funnels, "
+                "and a reciprocal dual-phase oscillator.\n\n",
             ),
             (
                 "How are the profiles different?\n",
-                "Profiles 0-2 use variants of the standard-looking divide and "
-                "multiply rules. Profile 3 changes the denominator and numerator "
-                "rules. Profile 4 uses reciprocal inversion and the transform "
-                "(3N - D) / D.\n\n",
+                "Profiles 0-2 use variants of the standard divide-and-multiply style "
+                "rules. Profiles 1 and 2 are the absorbing divergence cases, while "
+                "Profile 3 is the decay-funnel model. Profile 4 uses reciprocal "
+                "inversion and the transform (3N - D) / D to suppress runaway states "
+                "and alternate across the unit boundary.\n\n",
             ),
             (
                 "What has been formally checked?\n",
@@ -101,7 +104,8 @@ class CarrotCollatzLauncher(tk.Tk):
                 "What has not been proved?\n",
                 "The classic Collatz conjecture, universal convergence, divergence, "
                 "chaos, and randomness claims are not proved by this project. The "
-                "plots and tester are experiments that help inspect behavior.\n\n",
+                "plots and tester are computational experiments used to inspect the "
+                "framework's behavior.\n\n",
             ),
             (
                 "How should I explore?\n",

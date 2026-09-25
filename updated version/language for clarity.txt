@@ -1,0 +1,18 @@
+Title: The Carrot-Collatz Framework: A 1D Spatial Cut Parity Extension and Dual-Phase Fractional Oscillator
+
+Abstract:
+We present the Carrot-Collatz Framework, an experimental discrete dynamical system that extends Collatz-type transformations to rational fractions (Q). Grounded in a physical 1D spatial cut parity axiom (C = X - 1) and joint component state evaluation (C_Total = N + D - 2), we analyze the structural behavior of fractional trajectories across multiple profile variants. 
+
+We demonstrate how basic fractional extensions succumb to absorbing divergence traps (v1/v2), where odd denominators lock the system into one-way ratchets that send numerators to infinity (N -> ∞). To resolve these runaway states, we introduce Version 4: a coupled state machine employing a reciprocal inversion operator (2D / N) on even steps. 
+
+We prove that Version 4 completely eliminates absorbing traps, bounding trajectory growth and establishing a deterministic, anti-persistent period-2 parity clock (0 -> 1 -> 0 -> 1) across the unit boundary. Python implementation and simulation scripts for trajectory state-tree visualization are provided.
+
+## Prior Art & Novelty Statement
+
+While the general extension of $3x + 1$ dynamics to rational numbers ($\mathbb{Q}$) and $p$-adic integers is a recognized domain in discrete mathematics, the **Carrot-Collatz Framework** introduces an original geometric architecture and state-machine mechanism:
+
+1. **Physical Cut Geometry Parity ($C = X - 1$):** Rather than evaluating parity via standard modular arithmetic ($X \pmod 2$), operational parity is derived from the physical parallel cuts required to segment a 1D object into $X$ pieces.
+2. **Joint-Component State Coupling ($C_{\text{Total}} = N + D - 2$):** Numerator and denominator dynamics are linked into a single state engine, allowing denominator geometry to actively dictate system transformations.
+3. **Version 4 Dual-Phase Reciprocal Oscillator:** Standard rational Collatz extensions typically break down into unbounded divergence ($N \to \infty$). Version 4 utilizes a reciprocal inversion step ($\frac{2D}{N}$) on even states, acting as a geometric governor that prevents runaway traps and forces an anti-persistent period-2 parity clock ($0 \to 1 \to 0 \to 1$).
+
+The Carrot-Collatz Framework extends the Collatz Conjecture to rational fractions (N/D) by deriving operational parity from 1D spatial cutting geometry (C = X - 1). By evaluating total component cuts (C_Total = N + D - 2), the system replaces standard integer divisibility with a coupled fraction state machine. Across its profile taxonomy, small rule shifts demonstrate how fractional Collatz systems bifurcate—moving from infinite runaway traps (v1/v2) to bounded decay funnels (v3) and phase-locked dual-phase oscillators (v4).
